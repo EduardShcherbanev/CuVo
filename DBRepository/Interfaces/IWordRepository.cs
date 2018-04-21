@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DBRepository.Interfaces
+﻿namespace CuVo.DBRepository.Interfaces
 {
     public interface IWordRepository
     {

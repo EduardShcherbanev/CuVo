@@ -8,9 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CustomVocabulary.Data;
 using CustomVocabulary.Models;
 using CustomVocabulary.Services;
+using CuVo.DBRepository.Data;
+using CuVo.Models.User;
 
 namespace CustomVocabulary
 {

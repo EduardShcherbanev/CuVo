@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using CustomVocabulary.Models;
 using CustomVocabulary.Models.ManageViewModels;
 using CustomVocabulary.Services;
+using CuVo.Models.User;
 
 namespace CustomVocabulary.Controllers
 {

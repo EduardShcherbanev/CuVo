@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CustomVocabulary.Data;
-using DBRepository.Interfaces;
+﻿using CuVo.DBRepository.Data;
+using CuVo.DBRepository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace DBRepository.Factories
+namespace CuVo.DBRepository.Factories
 {
     public class RepositoryContextFactory : IRepositoryContextFactory
     {

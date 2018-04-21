@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CustomVocabulary.Data;
+﻿using CuVo.DBRepository.Data;
 
-namespace DBRepository.Interfaces
+namespace CuVo.DBRepository.Interfaces
 {
     public interface IRepositoryContextFactory
     {
