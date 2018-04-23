@@ -11,9 +11,10 @@ using System;
 namespace CuVo.DBRepository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180423212305_VocabularyModels")]
+    partial class VocabularyModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,8 +94,6 @@ namespace CuVo.DBRepository.Migrations
 
                     b.HasKey("WordFromId", "WordToId");
 
-                    b.HasIndex("WordToId");
-
                     b.ToTable("Translations");
                 });
 
@@ -110,8 +109,6 @@ namespace CuVo.DBRepository.Migrations
                     b.Property<string>("Spelling");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LanguageId");
 
                     b.ToTable("Words");
                 });
@@ -222,27 +219,6 @@ namespace CuVo.DBRepository.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("CuVo.Models.Vocabulary.Translation", b =>
-                {
-                    b.HasOne("CuVo.Models.Vocabulary.Word", "WordFrom")
-                        .WithMany()
-                        .HasForeignKey("WordFromId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CuVo.Models.Vocabulary.Word", "WordTo")
-                        .WithMany()
-                        .HasForeignKey("WordToId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CuVo.Models.Vocabulary.Word", b =>
-                {
-                    b.HasOne("CuVo.Models.Vocabulary.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
