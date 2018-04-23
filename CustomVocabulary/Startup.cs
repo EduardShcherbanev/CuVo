@@ -11,7 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using CustomVocabulary.Models;
 using CustomVocabulary.Services;
 using CuVo.DBRepository.Data;
+using CuVo.DBRepository.Factories;
+using CuVo.DBRepository.Interfaces;
+using CuVo.DBRepository.Repositories;
 using CuVo.Models.User;
+using DBRepository.Repositories;
 
 namespace CustomVocabulary
 {
@@ -36,6 +40,8 @@ namespace CustomVocabulary
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
+            services.AddScoped<IWordRepository>(provider => new WordRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
 
             services.AddMvc();
         }

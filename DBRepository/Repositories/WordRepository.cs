@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CuVo.DBRepository.Interfaces;
+﻿using CuVo.DBRepository.Interfaces;
+using DBRepository.Repositories;
 
-namespace DBRepository.Repositories
+namespace CuVo.DBRepository.Repositories
 {
-    public class WordRepository : IWordRepository
+    public class WordRepository : BaseRepository, IWordRepository
     {
+        public WordRepository(string connectionString, IRepositoryContextFactory contextFactory) : base(
+            connectionString, contextFactory)
+        {
+        }
+
+
     }
 }
