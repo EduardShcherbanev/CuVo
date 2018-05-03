@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLogic;
+using BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +17,6 @@ using CuVo.DBRepository.Factories;
 using CuVo.DBRepository.Interfaces;
 using CuVo.DBRepository.Repositories;
 using CuVo.Models.User;
-using DBRepository.Repositories;
 
 namespace CustomVocabulary
 {
@@ -41,6 +42,7 @@ namespace CustomVocabulary
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
+            services.AddScoped<IVocabularyLogic, VocabularyLogic>();
             services.AddScoped<IWordRepository>(provider => new WordRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
 
             services.AddMvc();

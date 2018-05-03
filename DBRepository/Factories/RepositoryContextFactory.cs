@@ -1,4 +1,5 @@
-﻿using CuVo.DBRepository.Data;
+﻿using System;
+using CuVo.DBRepository.Data;
 using CuVo.DBRepository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

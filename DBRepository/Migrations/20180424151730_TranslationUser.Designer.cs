@@ -11,45 +11,15 @@ using System;
 namespace CuVo.DBRepository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180424151730_TranslationUser")]
+    partial class TranslationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("CuVo.Models.Learning.Translation", b =>
-                {
-                    b.Property<int>("UserWordFromId");
-
-                    b.Property<int>("UserWordToId");
-
-                    b.HasKey("UserWordFromId", "UserWordToId");
-
-                    b.HasIndex("UserWordToId");
-
-                    b.ToTable("Translations");
-                });
-
-            modelBuilder.Entity("CuVo.Models.Learning.UserWord", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("UserId");
-
-                    b.Property<int>("WordId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WordId");
-
-                    b.HasIndex("UserId", "WordId");
-
-                    b.ToTable("UserWords");
-                });
 
             modelBuilder.Entity("CuVo.Models.User.ApplicationUser", b =>
                 {
@@ -116,20 +86,21 @@ namespace CuVo.DBRepository.Migrations
                     b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("CuVo.Models.Vocabulary.PartOfSpeech", b =>
+            modelBuilder.Entity("CuVo.Models.Vocabulary.Translation", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("WordFromId");
 
-                    b.Property<int>("LanguageId");
+                    b.Property<int>("WordToId");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("UserId");
 
-                    b.HasKey("Id");
+                    b.HasKey("WordFromId", "WordToId");
 
-                    b.HasIndex("LanguageId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("PartOfSpeech");
+                    b.HasIndex("WordToId");
+
+                    b.ToTable("Translations");
                 });
 
             modelBuilder.Entity("CuVo.Models.Vocabulary.Word", b =>
@@ -141,15 +112,11 @@ namespace CuVo.DBRepository.Migrations
 
                     b.Property<int>("LanguageId");
 
-                    b.Property<int>("PartOfSpeechId");
-
                     b.Property<string>("Spelling");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LanguageId");
-
-                    b.HasIndex("PartOfSpeechId");
 
                     b.HasIndex("Spelling", "LanguageId")
                         .IsUnique()
@@ -266,36 +233,20 @@ namespace CuVo.DBRepository.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("CuVo.Models.Learning.Translation", b =>
-                {
-                    b.HasOne("CuVo.Models.Learning.UserWord", "UserWordFrom")
-                        .WithMany()
-                        .HasForeignKey("UserWordFromId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CuVo.Models.Learning.UserWord", "UserWordTo")
-                        .WithMany()
-                        .HasForeignKey("UserWordToId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CuVo.Models.Learning.UserWord", b =>
+            modelBuilder.Entity("CuVo.Models.Vocabulary.Translation", b =>
                 {
                     b.HasOne("CuVo.Models.User.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.HasOne("CuVo.Models.Vocabulary.Word", "Word")
+                    b.HasOne("CuVo.Models.Vocabulary.Word", "WordFrom")
                         .WithMany()
-                        .HasForeignKey("WordId")
+                        .HasForeignKey("WordFromId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
 
-            modelBuilder.Entity("CuVo.Models.Vocabulary.PartOfSpeech", b =>
-                {
-                    b.HasOne("CuVo.Models.Vocabulary.Language", "Language")
+                    b.HasOne("CuVo.Models.Vocabulary.Word", "WordTo")
                         .WithMany()
-                        .HasForeignKey("LanguageId")
+                        .HasForeignKey("WordToId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -304,11 +255,6 @@ namespace CuVo.DBRepository.Migrations
                     b.HasOne("CuVo.Models.Vocabulary.Language", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CuVo.Models.Vocabulary.PartOfSpeech", "PartOfSpeech")
-                        .WithMany()
-                        .HasForeignKey("PartOfSpeechId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

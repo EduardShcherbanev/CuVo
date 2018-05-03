@@ -11,9 +11,10 @@ using System;
 namespace CuVo.DBRepository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180425102550_LearningModel")]
+    partial class LearningModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,27 +27,34 @@ namespace CuVo.DBRepository.Migrations
 
                     b.Property<int>("UserWordToId");
 
+                    b.Property<string>("UserWordFromUserId");
+
+                    b.Property<int?>("UserWordFromWordId");
+
+                    b.Property<string>("UserWordToUserId");
+
+                    b.Property<int?>("UserWordToWordId");
+
                     b.HasKey("UserWordFromId", "UserWordToId");
 
-                    b.HasIndex("UserWordToId");
+                    b.HasIndex("UserWordFromUserId", "UserWordFromWordId");
+
+                    b.HasIndex("UserWordToUserId", "UserWordToWordId");
 
                     b.ToTable("Translations");
                 });
 
             modelBuilder.Entity("CuVo.Models.Learning.UserWord", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
                     b.Property<string>("UserId");
 
                     b.Property<int>("WordId");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Id");
+
+                    b.HasKey("UserId", "WordId");
 
                     b.HasIndex("WordId");
-
-                    b.HasIndex("UserId", "WordId");
 
                     b.ToTable("UserWords");
                 });
@@ -270,20 +278,19 @@ namespace CuVo.DBRepository.Migrations
                 {
                     b.HasOne("CuVo.Models.Learning.UserWord", "UserWordFrom")
                         .WithMany()
-                        .HasForeignKey("UserWordFromId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserWordFromUserId", "UserWordFromWordId");
 
                     b.HasOne("CuVo.Models.Learning.UserWord", "UserWordTo")
                         .WithMany()
-                        .HasForeignKey("UserWordToId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserWordToUserId", "UserWordToWordId");
                 });
 
             modelBuilder.Entity("CuVo.Models.Learning.UserWord", b =>
                 {
                     b.HasOne("CuVo.Models.User.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CuVo.Models.Vocabulary.Word", "Word")
                         .WithMany()
