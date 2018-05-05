@@ -10,5 +10,6 @@ namespace CuVo.DBRepository.Interfaces
     {
         Task<UserWord> AddUserWord(UserWord userWord);
         Task<UserWord> GetUserWord(int wordId, string userId);
+        Task<List<UserWord>> GetUserWords(string userId);
     }
 }

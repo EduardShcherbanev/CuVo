@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -45,6 +46,16 @@ namespace BusinessLogic
                                 });
 
             return userWord;
+        }
+
+        public async Task<List<UserWord>> GetUserWords(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new EmptyUserIdException();
+            }
+
+            return await _learningRepository.GetUserWords(userId);
         }
     }
 }

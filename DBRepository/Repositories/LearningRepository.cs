@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CuVo.DBRepository.Interfaces;
@@ -30,6 +31,14 @@ namespace CuVo.DBRepository.Repositories
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
                 return await context.UserWords.SingleOrDefaultAsync(uw => uw.WordId == wordId && uw.UserId == userId);
+            }
+        }
+
+        public async Task<List<UserWord>> GetUserWords(string userId)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                return await context.UserWords.Where(uw => uw.UserId == userId).ToListAsync();
             }
         }
     }
