@@ -17,6 +17,7 @@ using CuVo.DBRepository.Factories;
 using CuVo.DBRepository.Interfaces;
 using CuVo.DBRepository.Repositories;
 using CuVo.Models.User;
+using Microsoft.AspNetCore.Http;
 
 namespace CustomVocabulary
 {
@@ -42,8 +43,9 @@ namespace CustomVocabulary
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
-            services.AddScoped<IVocabularyLogic, VocabularyLogic>();
             services.AddScoped<IWordRepository>(provider => new WordRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
+            services.AddScoped<ILearningRepository>(provider => new LearningRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
+            services.AddScoped<IVocabularyLogic, VocabularyLogic>();
 
             services.AddMvc();
         }

@@ -9,6 +9,6 @@ namespace BusinessLogic.Interfaces
 {
     public interface IVocabularyLogic
     {
-        Task<UserWord> AddWord(Word word);
+        Task<UserWord> AddWord(Word word, string userId);
     }
 }

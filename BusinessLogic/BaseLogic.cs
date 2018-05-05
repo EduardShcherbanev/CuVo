@@ -8,11 +8,8 @@ namespace BusinessLogic
 {
     public abstract class BaseLogic
     {
-        protected UserManager<ApplicationUser> UserManager { get; }
-
-        protected BaseLogic(UserManager<ApplicationUser> userManager)
+        protected BaseLogic()
         {
-            UserManager = userManager;
         }
     }
 }
