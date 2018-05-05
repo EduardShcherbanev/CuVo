@@ -13,11 +13,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CustomVocabulary.Controllers
 {
-    public class HomeController : Controller
+    public class HomeOldController : Controller
     {
         private readonly IVocabularyLogic _vocabularyLogic;
 
-        public HomeController(IVocabularyLogic vocabularyLogic, UserManager<ApplicationUser> userManager)
+        public HomeOldController(IVocabularyLogic vocabularyLogic, UserManager<ApplicationUser> userManager)
         {
             _vocabularyLogic = vocabularyLogic;
         }

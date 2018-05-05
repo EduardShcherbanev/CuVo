@@ -248,7 +248,7 @@ namespace CustomVocabulary.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(HomeOldController.Index), "HomeOld");
         }
 
         [HttpPost]
@@ -336,7 +336,7 @@ namespace CustomVocabulary.Controllers
         {
             if (userId == null || code == null)
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(HomeOldController.Index), "HomeOld");
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
@@ -456,7 +456,7 @@ namespace CustomVocabulary.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(HomeOldController.Index), "HomeOld");
             }
         }
 
