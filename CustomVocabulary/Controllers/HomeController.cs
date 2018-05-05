@@ -22,17 +22,17 @@ namespace CustomVocabulary.Controllers
             _vocabularyLogic = vocabularyLogic;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            _vocabularyLogic.AddWord(new Word
-            {
-                Description = "description",
-                LanguageId = 1,
-                PartOfSpeechId = 1,
-                Spelling = "test"
-            }, User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            //_vocabularyLogic.AddWord(new Word
+            //{
+            //    Description = "description",
+            //    LanguageId = 1,
+            //    PartOfSpeechId = 1,
+            //    Spelling = "test"
+            //}, User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            return View();
+            return View(await _vocabularyLogic.GetUserWords(User.FindFirst(ClaimTypes.NameIdentifier).Value));
         }
 
         public IActionResult About()

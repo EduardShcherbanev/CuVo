@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CuVo.DBRepository.Interfaces;
 using CuVo.Models.Learning;
+using CuVo.Models.Vocabulary;
 using Microsoft.EntityFrameworkCore;
 
 namespace CuVo.DBRepository.Repositories
@@ -38,7 +39,7 @@ namespace CuVo.DBRepository.Repositories
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return await context.UserWords.Where(uw => uw.UserId == userId).ToListAsync();
+                return await context.UserWords.Include(uw=>uw.Word).Where(uw => uw.UserId == userId).ToListAsync();
             }
         }
     }

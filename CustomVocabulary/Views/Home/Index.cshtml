@@ -1,6 +1,8 @@
-﻿@{
+﻿@using CuVo.Models.Learning
+@{
     ViewData["Title"] = "Home Page";
 }
+@model List<UserWord>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
@@ -103,4 +105,16 @@
             <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
         </ul>
     </div>
+</div>
+
+<div class="row">
+    <ul>
+        @foreach (UserWord userWord in Model)
+        {
+            <li>
+                <p>@userWord.Word.Spelling</p>
+                <p><i>@userWord.Word.Description</i></p>
+            </li>
+        }
+    </ul>
 </div>
