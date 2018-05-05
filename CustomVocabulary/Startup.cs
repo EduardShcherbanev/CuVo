@@ -62,7 +62,7 @@ namespace CustomVocabulary
             }
             else
             {
-                app.UseExceptionHandler("/HomeOld/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();
@@ -73,7 +73,7 @@ namespace CustomVocabulary
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=HomeOld}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
             });
         }
