@@ -1,9 +1,9 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './header/header.jsx';
 import About from './about/about.jsx';
-import Blog from './blog/blog.jsx';
+import Header from './header/header.jsx';
+import Vocabulary from './vocabulary/vocabulary.jsx';
 
 export default class App extends React.Component {
     render() {
@@ -11,12 +11,18 @@ export default class App extends React.Component {
             <Router>
                 <div>
                     <Header />
-                    <main>
-                        <Switch>
-                            <Route path="/about" component={About} />
-                            <Route path="/" component={Blog} />
-                        </Switch>
-                    </main>
+                    <div className="container body-content">
+                        <main>
+                            <Switch>
+                                <Route path="/about" component={About} />
+                                <Route path="/" component={Vocabulary} />
+                            </Switch>
+                        </main>
+                        <hr />
+                        <footer>
+                            <p>&copy; 2018 - Custom Vocabulary</p>
+                        </footer>
+                    </div>
                 </div>
             </Router>
         );

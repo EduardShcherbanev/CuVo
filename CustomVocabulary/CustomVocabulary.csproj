@@ -24,4 +24,10 @@
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="App\containers\footer\" />
+    <Folder Include="App\containers\translation\" />
+    <Folder Include="App\containers\word\" />
+  </ItemGroup>
+
 </Project>

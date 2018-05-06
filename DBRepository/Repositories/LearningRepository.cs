@@ -39,7 +39,11 @@ namespace CuVo.DBRepository.Repositories
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return await context.UserWords.Include(uw=>uw.Word).Where(uw => uw.UserId == userId).ToListAsync();
+                return await context.UserWords
+                    .Where(uw => uw.UserId == userId)
+                    .Include(w => w.Word.Language)
+                    .Include(w => w.Word.PartOfSpeech)
+                    .ToListAsync();
             }
         }
     }
