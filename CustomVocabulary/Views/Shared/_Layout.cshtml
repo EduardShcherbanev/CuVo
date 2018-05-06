@@ -15,6 +15,12 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+
+    <script type="text/javascript">
+        constants = {
+            vocabulary: '@Url.RouteUrl("Default", new {controller = "Home", action = "getVocabulary" })'
+        }
+    </script>
 </head>
 <body>
     @RenderBody()
@@ -39,7 +45,6 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-    <script type="text/javascript" src="@Url.Content("./assets/bundle.js")"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

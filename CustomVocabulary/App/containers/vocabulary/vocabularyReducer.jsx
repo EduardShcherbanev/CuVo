@@ -7,13 +7,13 @@ const initialState = {
 
 export default function vocabulary(state = initialState, action) {
     switch (action.type) {
-    case GET_POSTS_SUCCESS:
-        return { ...state, data: action.posts, error: '' }
+        case GET_POSTS_SUCCESS:
+            return { ...state, data: action.payload, error: '' }
 
-    case GET_POSTS_ERROR:
-        return { ...state, error: action.error }
+        case GET_POSTS_ERROR:
+            return { ...state, error: action.payload }
 
-    default:
-        return state;
+        default:
+            return state;
     }
 }

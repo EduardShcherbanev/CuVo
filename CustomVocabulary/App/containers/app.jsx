@@ -1,14 +1,14 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import About from './about/about.jsx';
-import Header from './header/header.jsx';
-import Vocabulary from './vocabulary/vocabulary.jsx';
+import About from "./about/about.jsx";
+import Header from "./header/header.jsx";
+import Vocabulary from "./vocabulary/vocabulary.jsx";
 
 export default class App extends React.Component {
     render() {
         return (
-            <Router>
+            <Router baseName="CustomVocabulary">
                 <div>
                     <Header />
                     <div className="container body-content">

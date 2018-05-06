@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { getVocabulary } from './vocabularyActions.jsx'
 
 class Vocabulary extends React.Component {
@@ -10,7 +11,11 @@ class Vocabulary extends React.Component {
     }
 
     render() {
-        let vocabulary = this.props.map(item => {
+        //return (
+        //    <div>{this.props.vocabulary.records.count}</div>
+        //    );
+
+        let vocabulary = this.props.vocabulary.records.map(item => {
             return (
                 <div key={item.userwordid}>
                     <div>{item.spelling}</div>
@@ -32,14 +37,14 @@ class Vocabulary extends React.Component {
 
 let mapProps = (state) => {
     return {
-        posts: state.data,
+        vocabulary: state.data,
         error: state.error
     }
 }
 
 let mapDispatch = (dispatch) => {
     return {
-        getVocabulary: () => dispatch(getVocabulary())
+        getVocabulary: bindActionCreators(getVocabulary, dispatch)
     }
 }
 
