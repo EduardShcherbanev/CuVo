@@ -27,11 +27,12 @@ namespace CustomVocabulary.Controllers
             return View();
         }
 
-        [Route("getVocabulary")]
         [HttpGet]
         public async Task<List<UserWordViewModel>> GetVocabulary()
         {
-            List<UserWord> userWords = await _vocabularyLogic.GetUserWords(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            List<UserWord> userWords = await _vocabularyLogic.GetUserWords(userId);
 
             List<UserWordViewModel> result = userWords.Select(uw => new UserWordViewModel
             {

@@ -11,10 +11,6 @@ class Vocabulary extends React.Component {
     }
 
     render() {
-        //return (
-        //    <div>{this.props.vocabulary.records.count}</div>
-        //    );
-
         let vocabulary = this.props.vocabulary.records.map(item => {
             return (
                 <div key={item.userwordid}>

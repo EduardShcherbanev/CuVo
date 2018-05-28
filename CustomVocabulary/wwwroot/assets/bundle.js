@@ -23755,7 +23755,7 @@ var App = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 _reactRouterDom.BrowserRouter,
-                { baseName: 'CustomVocabulary' },
+                null,
                 _react2.default.createElement(
                     'div',
                     null,
@@ -27026,10 +27026,6 @@ var Vocabulary = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            //return (
-            //    <div>{this.props.vocabulary.records.count}</div>
-            //    );
-
             var vocabulary = this.props.vocabulary.records.map(function (item) {
                 return _react2.default.createElement(
                     'div',

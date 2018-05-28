@@ -8,7 +8,7 @@ import Vocabulary from "./vocabulary/vocabulary.jsx";
 export default class App extends React.Component {
     render() {
         return (
-            <Router baseName="CustomVocabulary">
+            <Router>
                 <div>
                     <Header />
                     <div className="container body-content">
