@@ -64,6 +64,7 @@ namespace CustomVocabulary
             services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
             services.AddScoped<IWordRepository>(provider => new WordRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
             services.AddScoped<ILearningRepository>(provider => new LearningRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
+            services.AddScoped<IIdentityRepository>(provider => new IdentityRepository(Configuration.GetConnectionString("DefaultConnection"), provider.GetService<IRepositoryContextFactory>()));
             services.AddScoped<IVocabularyLogic, VocabularyLogic>();
 
             services.AddMvc();

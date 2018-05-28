@@ -12,6 +12,7 @@ namespace CustomVocabulary.Controllers
 
         public BaseController()
         {
+            CurrentUserId = "c524d2ef-6096-4756-b2b8-57560832f786";
         }
     }
 }

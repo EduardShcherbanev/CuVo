@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CustomVocabulary.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IVocabularyLogic _vocabularyLogic;
 
@@ -28,13 +28,11 @@ namespace CustomVocabulary.Controllers
             return View();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<List<UserWordViewModel>> GetVocabulary()
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            List<UserWord> userWords = await _vocabularyLogic.GetUserWords(userId);
+            List<UserWord> userWords = await _vocabularyLogic.GetUserWords(CurrentUserId);
 
             List<UserWordViewModel> result = userWords.Select(uw => new UserWordViewModel
             {

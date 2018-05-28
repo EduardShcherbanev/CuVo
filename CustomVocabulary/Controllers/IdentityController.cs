@@ -12,10 +12,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace CustomVocabulary.Controllers
 {
-    public class IdentityController : Controller
+    public class IdentityController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -35,27 +36,31 @@ namespace CustomVocabulary.Controllers
         [HttpPost]
         public async Task<IActionResult> Token([FromBody]IdentityViewModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
+            SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
 
             if (!result.Succeeded)
             {
                 return Unauthorized();
             }
 
-            var claims = new List<Claim>
+            ApplicationUser user = await _userManager.FindByEmailAsync(model.Email);
+            CurrentUserId = user.Id;
+
+            List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, model.Email),
             };
 
-            var now = DateTime.UtcNow;
-            var jwt = new JwtSecurityToken(
+            DateTime now = DateTime.UtcNow;
+            JwtSecurityToken jwt = new JwtSecurityToken(
                 issuer: AuthOptions.ISSUER,
                 audience: AuthOptions.AUDIENCE,
                 notBefore: now,
                 claims: claims,
                 expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
-                signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+                signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(),
+                    SecurityAlgorithms.HmacSha256));
+            string encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
             return Ok(encodedJwt);
         }

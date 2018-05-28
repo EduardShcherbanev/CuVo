@@ -27026,10 +27026,10 @@ var Vocabulary = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var vocabulary = this.props.vocabulary.records.map(function (item) {
+            var vocabulary = this.props.vocabulary.map(function (item) {
                 return _react2.default.createElement(
                     'div',
-                    { key: item.userwordid },
+                    { key: item.userWordId },
                     _react2.default.createElement(
                         'div',
                         null,
@@ -27043,7 +27043,7 @@ var Vocabulary = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         null,
-                        item.partofspeech
+                        item.partOfSpeech
                     ),
                     _react2.default.createElement(
                         'div',
@@ -27628,7 +27628,7 @@ exports.default = vocabulary;
 var _vocabularyConstants = __webpack_require__(47);
 
 var initialState = {
-    data: { records: [] },
+    data: [],
     error: ''
 };
 
@@ -27637,10 +27637,10 @@ function vocabulary() {
     var action = arguments[1];
 
     switch (action.type) {
-        case _vocabularyConstants.GET_POSTS_SUCCESS:
+        case _vocabularyConstants.GET_VOCABULARY_SUCCESS:
             return _extends({}, state, { data: action.payload, error: '' });
 
-        case _vocabularyConstants.GET_POSTS_ERROR:
+        case _vocabularyConstants.GET_VOCABULARY_ERROR:
             return _extends({}, state, { error: action.payload });
 
         default:
