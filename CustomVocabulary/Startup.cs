@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using BusinessLogic;
 using BusinessLogic.Interfaces;
@@ -17,7 +18,9 @@ using CuVo.DBRepository.Factories;
 using CuVo.DBRepository.Interfaces;
 using CuVo.DBRepository.Repositories;
 using CuVo.Models.User;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CustomVocabulary
 {
@@ -39,6 +42,22 @@ namespace CustomVocabulary
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = "ValidIssuer",
+                        ValidAudience = "ValidateAudience",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("IssuerSigningSecretKey")),
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
