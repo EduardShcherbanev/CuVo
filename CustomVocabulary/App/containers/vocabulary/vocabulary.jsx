@@ -13,7 +13,7 @@ class Vocabulary extends React.Component {
     render() {
         let vocabulary = this.props.vocabulary.map(item => {
             return (
-                <div key={item.userWordId}>
+                <div key={item.userWordId} className="card">
                     <div>{item.spelling}</div>
                     <div>{item.description}</div>
                     <div>{item.partOfSpeech}</div>
@@ -24,7 +24,7 @@ class Vocabulary extends React.Component {
         });
 
         return (
-            <div id="vocabulary">
+            <div id="vocabulary" className="card-deck">
                 {vocabulary}
             </div>
         );
