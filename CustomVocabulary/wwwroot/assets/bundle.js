@@ -3375,7 +3375,7 @@ var _app = __webpack_require__(87);
 
 var _app2 = _interopRequireDefault(_app);
 
-var _vocabularyReducer = __webpack_require__(120);
+var _vocabularyReducer = __webpack_require__(122);
 
 var _vocabularyReducer2 = _interopRequireDefault(_vocabularyReducer);
 
@@ -26927,11 +26927,11 @@ var _about = __webpack_require__(119);
 
 var _about2 = _interopRequireDefault(_about);
 
-var _translation = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../containers/translation/translation.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _translation = __webpack_require__(120);
 
 var _translation2 = _interopRequireDefault(_translation);
 
-var _word = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../containers/word/word.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _word = __webpack_require__(121);
 
 var _word2 = _interopRequireDefault(_word);
 
@@ -27048,34 +27048,38 @@ var Vocabulary = function (_React$Component) {
             var vocabulary = this.props.vocabulary.map(function (item) {
                 return _react2.default.createElement(
                     'div',
-                    { key: item.userWordId },
+                    { key: item.userWordId, className: 'card mb-3' },
                     _react2.default.createElement(
                         'div',
-                        null,
-                        item.spelling
+                        { className: 'card-body' },
+                        _react2.default.createElement(
+                            'h5',
+                            { className: 'card-title' },
+                            item.spelling
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            { className: 'card-text' },
+                            item.description
+                        )
                     ),
                     _react2.default.createElement(
                         'div',
-                        null,
-                        item.description
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        item.partOfSpeech
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        item.language
-                    ),
-                    _react2.default.createElement('hr', null)
+                        { className: 'card-footer' },
+                        item.partOfSpeech,
+                        ' ',
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'badge badge-pill badge-secondary float-right m-1' },
+                            item.language
+                        )
+                    )
                 );
             });
 
             return _react2.default.createElement(
                 'div',
-                { id: 'vocabulary' },
+                { id: 'vocabulary', className: 'card-deck' },
                 vocabulary
             );
         }
@@ -27682,6 +27686,108 @@ exports.default = About;
 
 /***/ }),
 /* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Translation = function (_React$Component) {
+    _inherits(Translation, _React$Component);
+
+    function Translation() {
+        _classCallCheck(this, Translation);
+
+        return _possibleConstructorReturn(this, (Translation.__proto__ || Object.getPrototypeOf(Translation)).apply(this, arguments));
+    }
+
+    _createClass(Translation, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                'Translation'
+            );
+        }
+    }]);
+
+    return Translation;
+}(_react2.default.Component);
+
+exports.default = Translation;
+;
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Word = function (_React$Component) {
+    _inherits(Word, _React$Component);
+
+    function Word() {
+        _classCallCheck(this, Word);
+
+        return _possibleConstructorReturn(this, (Word.__proto__ || Object.getPrototypeOf(Word)).apply(this, arguments));
+    }
+
+    _createClass(Word, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                'Word'
+            );
+        }
+    }]);
+
+    return Word;
+}(_react2.default.Component);
+
+exports.default = Word;
+;
+
+/***/ }),
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -13,12 +13,12 @@ class Vocabulary extends React.Component {
     render() {
         let vocabulary = this.props.vocabulary.map(item => {
             return (
-                <div key={item.userWordId} className="card">
-                    <div>{item.spelling}</div>
-                    <div>{item.description}</div>
-                    <div>{item.partOfSpeech}</div>
-                    <div>{item.language}</div>
-                    <hr />
+                <div key={item.userWordId} className="card mb-3">
+                    <div className="card-body">
+                        <h5 className="card-title">{item.spelling}</h5>
+                        <p className="card-text">{item.description}</p>
+                    </div>
+                    <div className="card-footer">{item.partOfSpeech} <span className="badge badge-pill badge-secondary float-right m-1">{item.language}</span></div>
                 </div>
             );
         });
