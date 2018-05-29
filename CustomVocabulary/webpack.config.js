@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const bundleFolder = "./wwwroot/assets/";
-const srcFolder = "./App/"
+const srcFolder = "./App/";
 
 module.exports = {
     entry: [

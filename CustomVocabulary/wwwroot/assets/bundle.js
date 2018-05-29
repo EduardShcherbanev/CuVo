@@ -26825,13 +26825,14 @@ var Header = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 "nav",
-                { className: "navbar fixed-top navbar-expand-lg navbar-light" },
+                { className: "navbar fixed-top navbar-expand-lg navbar-light bg-light" },
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
                     _react2.default.createElement(
                         "button",
-                        { type: "button", className: "navbar-toggle", "data-toggle": "collapse", "data-target": ".navbar-collapse" },
+                        { type: "button", className: "navbar-toggle", "data-toggle": "collapse", "data-target": ".navbar-collapse",
+                            "aria-expanded": "false", "aria-label": "Toggle navigation" },
                         _react2.default.createElement("span", { className: "navbar-toggler-icon" })
                     ),
                     _react2.default.createElement(
@@ -26844,32 +26845,14 @@ var Header = function (_React$Component) {
                         { className: "navbar-collapse collapse" },
                         _react2.default.createElement(
                             "ul",
-                            { className: "nav navbar-nav" },
+                            { className: "navbar-nav mr-auto mt-2 mt-lg-0" },
                             _react2.default.createElement(
                                 "li",
-                                null,
+                                { className: "nav-item active" },
                                 _react2.default.createElement(
                                     "a",
-                                    { "asp-area": "", "asp-controller": "HomeOld", "asp-action": "Index" },
+                                    { className: "nav-link", "asp-controller": "Home", "asp-action": "Index" },
                                     "Home"
-                                )
-                            ),
-                            _react2.default.createElement(
-                                "li",
-                                null,
-                                _react2.default.createElement(
-                                    "a",
-                                    { "asp-area": "", "asp-controller": "HomeOld", "asp-action": "About" },
-                                    "About"
-                                )
-                            ),
-                            _react2.default.createElement(
-                                "li",
-                                null,
-                                _react2.default.createElement(
-                                    "a",
-                                    { "asp-area": "", "asp-controller": "HomeOld", "asp-action": "Contact" },
-                                    "Contact"
                                 )
                             )
                         )
