@@ -13,5 +13,6 @@ namespace CustomVocabulary.Models.Vocabulary
         public string Description { get; set; }
         public string PartOfSpeech { get; set; }
         public string Language { get; set; }
+        public string Level { get; set; }
     }
 }

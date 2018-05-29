@@ -12,7 +12,9 @@ namespace CuVo.Models.Vocabulary
         public int PartOfSpeechId { get; set; }
         public int LanguageId { get; set; }
         public string Description { get; set; }
+        public int LevelId { get; set; }
         public PartOfSpeech PartOfSpeech { get; set; }
         public Language Language { get; set; }
+        public Level Level { get; set; }
     }
 }

@@ -18,7 +18,9 @@ class Vocabulary extends React.Component {
                         <h5 className="card-title">{item.spelling}</h5>
                         <p className="card-text">{item.description}</p>
                     </div>
-                    <div className="card-footer">{item.partOfSpeech} <span className="badge badge-pill badge-secondary float-right m-1">{item.language}</span></div>
+                    <div className="card-footer">
+                        <span className="badge badge-pill badge-secondary">{item.level}</span> {item.partOfSpeech} <span className="badge badge-pill badge-secondary float-right m-1">{item.language}</span>
+                    </div>
                 </div>
             );
         });

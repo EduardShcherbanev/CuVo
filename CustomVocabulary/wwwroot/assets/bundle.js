@@ -26825,30 +26825,19 @@ var Header = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 "nav",
-                { className: "navbar navbar-inverse navbar-fixed-top" },
+                { className: "navbar fixed-top navbar-expand-lg navbar-light" },
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
                     _react2.default.createElement(
-                        "div",
-                        { className: "navbar-header" },
-                        _react2.default.createElement(
-                            "button",
-                            { type: "button", className: "navbar-toggle", "data-toggle": "collapse", "data-target": ".navbar-collapse" },
-                            _react2.default.createElement(
-                                "span",
-                                { className: "sr-only" },
-                                "Toggle navigation"
-                            ),
-                            _react2.default.createElement("span", { className: "icon-bar" }),
-                            _react2.default.createElement("span", { className: "icon-bar" }),
-                            _react2.default.createElement("span", { className: "icon-bar" })
-                        ),
-                        _react2.default.createElement(
-                            "a",
-                            { "asp-area": "", "asp-controller": "HomeOld", "asp-action": "Index", className: "navbar-brand" },
-                            "Custom Vocabulary"
-                        )
+                        "button",
+                        { type: "button", className: "navbar-toggle", "data-toggle": "collapse", "data-target": ".navbar-collapse" },
+                        _react2.default.createElement("span", { className: "navbar-toggler-icon" })
+                    ),
+                    _react2.default.createElement(
+                        "a",
+                        { "asp-area": "", "asp-controller": "Home", "asp-action": "Index", className: "navbar-brand" },
+                        "Custom Vocabulary"
                     ),
                     _react2.default.createElement(
                         "div",
@@ -27066,6 +27055,12 @@ var Vocabulary = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'card-footer' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'badge badge-pill badge-secondary' },
+                            item.level
+                        ),
+                        ' ',
                         item.partOfSpeech,
                         ' ',
                         _react2.default.createElement(

@@ -11,9 +11,10 @@ using System;
 namespace CuVo.DBRepository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180529130445_NotNullableLevelId")]
+    partial class NotNullableLevelId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,6 +169,10 @@ namespace CuVo.DBRepository.Migrations
                     b.HasIndex("LevelId");
 
                     b.HasIndex("PartOfSpeechId");
+
+                    b.HasIndex("Spelling", "LanguageId")
+                        .IsUnique()
+                        .HasFilter("[Spelling] IS NOT NULL");
 
                     b.ToTable("Words");
                 });

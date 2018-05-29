@@ -43,6 +43,7 @@ namespace CuVo.DBRepository.Repositories
                     .Where(uw => uw.UserId == userId)
                     .Include(w => w.Word.Language)
                     .Include(w => w.Word.PartOfSpeech)
+                    .Include(w => w.Word.Level)
                     .ToListAsync();
             }
         }

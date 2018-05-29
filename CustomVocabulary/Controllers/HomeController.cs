@@ -40,7 +40,8 @@ namespace CustomVocabulary.Controllers
                 Spelling = uw.Word.Spelling,
                 Description = uw.Word.Description,
                 Language = uw.Word.Language.Name,
-                PartOfSpeech = uw.Word.PartOfSpeech.Name
+                PartOfSpeech = uw.Word.PartOfSpeech.Name,
+                Level = uw.Word.Level.Name
             }).ToList();
 
             return result;
