@@ -1,25 +1,44 @@
 ﻿import React from 'react';
+import $ from "../../../wwwroot/lib/jquery/dist/jquery"
+import { Link } from 'react-router-dom';
 
 export default class Header extends React.Component {
+    componentDidMount() {
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+    }
+
     render() {
         return (
-            <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-                <div className="container">
-                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <a asp-area="" asp-controller="Home" asp-action="Index" className="navbar-brand">Custom Vocabulary</a>
-
-                    <div className="navbar-collapse collapse">
-                        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li className="nav-item active">
-                                <a className="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+            <div className="navbar-fixed">
+                <nav>
+                    <div className="nav-wrapper">
+                        <div className="brand-logo">
+                            <Link to="/">Custom Vocabulary</Link>
+                        </div>
+                        <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+                        <ul className="right hide-on-med-and-down">
+                            <li>
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li>
+                                <Link to="/about">About</Link>
                             </li>
                         </ul>
                     </div>
-                </div>
-            </nav>
+                </nav>
+
+                <ul className="sidenav" id="mobile-demo">
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/about">About</Link>
+                    </li>
+                </ul>
+            </div>
         );
     }
 };
