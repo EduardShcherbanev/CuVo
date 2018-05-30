@@ -3342,6 +3342,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 var GET_VOCABULARY_SUCCESS = exports.GET_VOCABULARY_SUCCESS = 'GET_VOCABULARY_SUCCESS';
 var GET_VOCABULARY_ERROR = exports.GET_VOCABULARY_ERROR = 'GET_VOCABULARY_ERROR';
+var CHANGE_DESCRIPTION_SUCCESS = exports.CHANGE_DESCRIPTION_SUCCESS = 'CHANGE_DESCRIPTION_SUCCESS';
+var CHANGE_DESCRIPTION_ERROR = exports.CHANGE_DESCRIPTION_ERROR = 'CHANGE_DESCRIPTION_ERROR';
 
 /***/ }),
 /* 49 */
@@ -37415,6 +37417,8 @@ var _redux = __webpack_require__(16);
 
 var _vocabularyActions = __webpack_require__(117);
 
+var _userWordCard = __webpack_require__(124);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37433,51 +37437,20 @@ var Vocabulary = function (_React$Component) {
     }
 
     _createClass(Vocabulary, [{
-        key: 'componentDidMount',
+        key: "componentDidMount",
         value: function componentDidMount() {
             this.props.getVocabulary();
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             var vocabulary = this.props.vocabulary.map(function (item) {
-                return _react2.default.createElement(
-                    'div',
-                    { key: item.userWordId, className: 'card white' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'card-content' },
-                        _react2.default.createElement(
-                            'p',
-                            { className: 'card-title' },
-                            item.spelling
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            item.description
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'card-action' },
-                        _react2.default.createElement(
-                            'span',
-                            null,
-                            item.partOfSpeech
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'right' },
-                            item.level
-                        )
-                    )
-                );
+                return _react2.default.createElement(_userWordCard.UserWordCard, { key: item.userWordId, item: item });
             });
 
             return _react2.default.createElement(
-                'div',
-                { id: 'vocabulary', className: 'row' },
+                "div",
+                { id: "vocabulary", className: "row" },
                 vocabulary
             );
         }
@@ -37516,6 +37489,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.receiveVocabulary = receiveVocabulary;
 exports.errorReceive = errorReceive;
 exports.getVocabulary = getVocabulary;
+exports.changeDescription = changeDescription;
 
 var _vocabularyConstants = __webpack_require__(48);
 
@@ -37543,6 +37517,29 @@ function getVocabulary() {
             dispatch(receiveVocabulary(data));
         }).catch(function (ex) {
             dispatch(errorReceive(ex));
+        });
+    };
+}
+
+function changeDescription(userWordId, description) {
+    return function (dispatch) {
+        fetch(constants.changeDescription, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userWordId: userWordId, description: description })
+        }).then(function (response) {
+            if (response.ok) {
+                dispatch({ type: _vocabularyConstants.CHANGE_DESCRIPTION_SUCCESS });
+                getVocabulary()(dispatch);
+            } else {
+                alert('Ошибка добавления комментария');
+                dispatch({ type: _vocabularyConstants.CHANGE_DESCRIPTION_ERROR, payload: 'Ошибка добавления комментария' });
+            }
+        }).catch(function (ex) {
+            alert(ex);
+            dispatch({ type: _vocabularyConstants.CHANGE_DESCRIPTION_ERROR, payload: ex });
         });
     };
 }
@@ -38221,6 +38218,126 @@ function vocabulary() {
             return state;
     }
 }
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(12);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserWordCard = function (_React$Component) {
+    _inherits(UserWordCard, _React$Component);
+
+    function UserWordCard() {
+        _classCallCheck(this, UserWordCard);
+
+        return _possibleConstructorReturn(this, (UserWordCard.__proto__ || Object.getPrototypeOf(UserWordCard)).apply(this, arguments));
+    }
+
+    _createClass(UserWordCard, [{
+        key: 'render',
+        value: function render() {
+            var cardId = "card" + this.props.item.userWordId;
+            var descriptionId = "desc" + this.props.item.userWordId;
+            var editDescriptionId = "editdesc" + this.props.item.userWordId;
+
+            return _react2.default.createElement(
+                'div',
+                { key: this.props.item.userWordId, id: cardId, className: 'card white' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'card-content' },
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'card-title activator' },
+                        this.props.item.spelling,
+                        _react2.default.createElement(
+                            'i',
+                            { className: 'material-icons right' },
+                            'edit'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { id: descriptionId },
+                        this.props.item.description
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'card-action' },
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        this.props.item.partOfSpeech
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'right' },
+                        this.props.item.level
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'card-reveal' },
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'card-title' },
+                        this.props.item.spelling,
+                        _react2.default.createElement(
+                            'i',
+                            { className: 'material-icons right' },
+                            'close'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'input-field' },
+                        _react2.default.createElement('textarea', { id: editDescriptionId, className: 'materialize-textarea', value: '{item.description}' }),
+                        _react2.default.createElement(
+                            'label',
+                            { htmlFor: editDescriptionId },
+                            'Description'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { className: 'waves-effect btn-flat' },
+                        'Delete'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return UserWordCard;
+}(_react2.default.Component);
+
+exports.default = UserWordCard;
+;
 
 /***/ })
 /******/ ]);

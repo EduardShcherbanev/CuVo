@@ -1,8 +1,9 @@
-﻿import React from 'react';
-import ReactDOM from 'react-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getVocabulary } from './vocabularyActions.jsx'
+﻿import React from "react";
+import ReactDOM from "react-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { getVocabulary } from "./vocabularyActions.jsx"
+import { UserWordCard } from "./components/userWordCard.jsx"
 
 class Vocabulary extends React.Component {
 
@@ -13,16 +14,7 @@ class Vocabulary extends React.Component {
     render() {
         let vocabulary = this.props.vocabulary.map(item => {
             return (
-                <div key={item.userWordId} className="card white">
-                    <div className="card-content">
-                        <p className="card-title">{item.spelling}</p>
-                        <p>{item.description}</p>
-                    </div>
-                    <div className="card-action">
-                        <span>{item.partOfSpeech}</span>
-                        <span className="right">{item.level}</span>
-                    </div>
-                </div>
+                <UserWordCard key={item.userWordId} item={item} />
             );
         });
 
