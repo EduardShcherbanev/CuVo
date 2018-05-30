@@ -13,7 +13,7 @@ export default class Header extends React.Component {
     render() {
         return (
             <div className="navbar-fixed">
-                <nav>
+                <nav className="light-blue">
                     <div className="nav-wrapper">
                         <div className="brand-logo">
                             <Link to="/">Custom Vocabulary</Link>
