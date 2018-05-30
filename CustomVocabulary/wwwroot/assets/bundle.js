@@ -37448,7 +37448,7 @@ var Vocabulary = function (_React$Component) {
                         'div',
                         { className: 'card-content' },
                         _react2.default.createElement(
-                            'h5',
+                            'p',
                             { className: 'card-title' },
                             item.spelling
                         ),
@@ -37463,14 +37463,13 @@ var Vocabulary = function (_React$Component) {
                         { className: 'card-action' },
                         _react2.default.createElement(
                             'span',
-                            { className: 'badge' },
-                            item.level
+                            null,
+                            item.partOfSpeech
                         ),
-                        item.partOfSpeech,
                         _react2.default.createElement(
                             'span',
-                            { className: 'badge' },
-                            item.language
+                            { className: 'right' },
+                            item.level
                         )
                     )
                 );
@@ -37538,7 +37537,7 @@ function errorReceive(err) {
 
 function getVocabulary() {
     return function (dispatch) {
-        fetch(constants.vocabulary).then(function (response) {
+        fetch(constants.getvocabulary).then(function (response) {
             return response.json();
         }).then(function (data) {
             dispatch(receiveVocabulary(data));

@@ -15,13 +15,12 @@ class Vocabulary extends React.Component {
             return (
                 <div key={item.userWordId} className="card white">
                     <div className="card-content">
-                        <h5 className="card-title">{item.spelling}</h5>
+                        <p className="card-title">{item.spelling}</p>
                         <p>{item.description}</p>
                     </div>
                     <div className="card-action">
-                        <span className="badge">{item.level}</span>
-                        {item.partOfSpeech}
-                        <span className="badge">{item.language}</span>
+                        <span>{item.partOfSpeech}</span>
+                        <span className="right">{item.level}</span>
                     </div>
                 </div>
             );

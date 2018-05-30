@@ -17,7 +17,7 @@ export function errorReceive(err) {
 
 export function getVocabulary() {
     return (dispatch) => {
-        fetch(constants.vocabulary)
+        fetch(constants.getvocabulary)
             .then((response) => {
                 return response.json();
             }).then((data) => {
